@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+'''
+@File    :   taobao.py
+@Time    :   2023/05/22 16:45:31
+@Author  :   lsgd002 
+@Version :   1.0
+@Desc    :   https://www.bilibili.com/video/BV1QY411F7Vt?p=12
+             https://blog.csdn.net/qq_47188967/article/details/125421176
+'''
+
+
 import scrapy
 from scrapy import Selector
 from taobao_spider.items import TaobaoSpiderItem
