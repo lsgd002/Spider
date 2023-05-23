@@ -13,14 +13,12 @@ import scrapy
 from scrapy import Selector
 from taobao_spider.items import TaobaoSpiderItem
 
-from scrapy.spiders import Spider
 
-
-class TaobaoSpider(Spider):
+class TaobaoSpider(scrapy.Spider):
     name = "taobao"
     allowed_domains = ["www.taobao.com"]
     start_urls = [
-        "https://s.taobao.com/search?commend=all&ie=utf8&initiative_id=tbindexz_20170306&page=1&q=%E6%89%8B%E6%9C%BA"]
+        "https://s.taobao.com/search?page=1&q=%E6%89%8B%E6%9C%BA"]
 
     def parse(self, response):
         for item in Selector(response).css('div.Content--content--sgSCZ12 > div'):
