@@ -9,7 +9,6 @@
              https://blog.csdn.net/qq_47188967/article/details/125421176
 '''
 
-
 import scrapy
 from scrapy import Selector
 from taobao_spider.items import TaobaoSpiderItem
@@ -39,5 +38,3 @@ class TaobaoSpider(Spider):
             taobaoitem['shop_location'] = item.css(
                 'div.Price--priceWrapper--Q0Dn7pN > div:nth-child(5) > span::text').get()
             yield taobaoitem
-
-
