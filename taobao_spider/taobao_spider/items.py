@@ -9,8 +9,8 @@ import scrapy
 class TaobaoSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    title = scrapy.Field()
-    price = scrapy.Field()
+    # title = scrapy.Field()
+    # price = scrapy.Field()
     deal_count = scrapy.Field()
     shop_name = scrapy.Field()
     shop_location = scrapy.Field()

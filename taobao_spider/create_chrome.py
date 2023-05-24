@@ -11,29 +11,21 @@
 
 import json
 from selenium import webdriver
-from selenium.webdriver.edge.service import Service
-from selenium.webdriver.common.action_chains import ActionChains
- 
- 
 
-#无perform，只点击但不执行函数行为；有perform，则会执行函数
-def create_chrome_driver(*, headless=False):  # 创建谷歌浏览器对象，用selenium控制浏览器访问url
-    options = webdriver.EdgeOptions()
+
+
+# 创建谷歌浏览器对象，用selenium控制浏览器访问url
+def create_chrome_driver(*, headless=False):
+    options = webdriver.ChromeOptions()
     if headless:  # 如果为True，则爬取时不显示浏览器窗口
         options.add_argument('--headless')
 
     # 做一些控制上的优化
-    options.set_capability('ms:edgeOptions', {'sync': False}) 
-    options.add_argument('--disable-features=msEdge.Sync')
-    options.set_capability('ms:edgeOptions', {'useAutomationExtension': False})
-    options.set_capability('ms:edgeOptions', {'profile': {'default_content_setting_values': {'cookies': 2}}})
-    options.set_capability('ms:edgeOptions', {'excludeSwitches': ['enable-automation']})
-
-
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
     # 创建浏览器对象
-    browser = webdriver.Edge(options=options,service=Service(r'C:\Users\wdl\Spider\taobao_spider\msedgedriver.exe'))
+    browser = webdriver.Chrome(
+        options=options, executable_path=r'C:\Users\wdl\Spider\taobao_spider\chromedriver.exe')
     # 破解反爬措施
     browser.execute_cdp_cmd(
         'Page.addScriptToEvaluateOnNewDocument',
@@ -41,3 +33,11 @@ def create_chrome_driver(*, headless=False):  # 创建谷歌浏览器对象，�
     )
 
     return browser
+
+def add_cookies(browser, cookies_file):
+    """添加指定cookie到浏览器"""
+    with open(cookies_file, 'r') as f:
+        cookies_list = json.load(f)
+        for cookie_dict in cookies_list:
+            if cookie_dict['secure']:
+                browser.add_cookie(cookie_dict)

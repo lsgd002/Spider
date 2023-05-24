@@ -8,9 +8,9 @@
 @Desc    :   None
 '''
 
-from utils import create_chrome_driver
+from create_chrome import create_chrome_driver, add_cookies
 
 browser = create_chrome_driver()
-# browser.get('https://www.taobao.com/')
-# browser.add_cookie({'name': 'key-aaaaaaa', 'value': 'value-bbbbbbb'})
+browser.get('https://www.taobao.com/')
+add_cookies(browser, 'taobao.json')
 browser.get('https://s.taobao.com/search?page=1&q=%E6%89%8B%E6%9C%BA')
