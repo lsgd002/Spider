@@ -17,7 +17,7 @@ headers = {
 response = requests.get(
     'https://tj.58.com/ershoufang/?from=esf&from=esf_list', headers=headers)
 tree = etree.HTML(response.text, etree.HTMLParser(encoding='utf-8'))
-file = open(r'spider_course\2.data_analysis\58wsf.html', 'w', encoding='utf-8')
+file = open(r'spider_course\2.data_analysis\58wsf.txt', 'w', encoding='utf-8')
 li_list = tree.xpath(
     '//*[@id="esfMain"]/section/section[3]/section[1]/section[2]/div')
 for li in li_list:
@@ -28,5 +28,5 @@ for li in li_list:
     area = li.xpath('./a/div[2]/div[1]/section/div[1]/p[2]/text()')[0]
     print(title, price, area.strip())
 
-    file.write(f'{title} {price} {area.strip()} + \n')
+    file.write(f'{title} {price} {area.strip()}' + '\n')
     
